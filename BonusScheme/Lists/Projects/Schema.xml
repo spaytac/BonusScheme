@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="Projects" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/Projects" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x010058497E0560CD45F3883C0A76D31D13F7" Name="BSProject" Group="BS Content Types" Description="" Inherits="TRUE" Version="0">
+        <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{92fa0af2-ad10-44f3-8532-3ede6dd9490e}" DisplayName="Due Date" Required="TRUE" Name="bspDueDate" Format="DateOnly" />
+          <FieldRef ID="{302c57ea-9093-492d-b6d6-43d64691ebfd}" DisplayName="Participants" Required="TRUE" Name="bspParticipants" />
+          <FieldRef ID="{7efd997c-fa52-474b-bafe-86dab7bf185e}" DisplayName="Earnings" Required="TRUE" Name="bspEarnings" />
+          <FieldRef ID="{54eba282-5070-49c1-be9b-e44ff5265e57}" DisplayName="Expenses" Required="FALSE" Name="bspExpenses" />
+          <FieldRef ID="{eba2d59a-13b5-4395-b5b8-0cbcd031af45}" DisplayName="Rule Engine" Required="TRUE" Name="bspRuleEngine" />
+          <FieldRef ID="{e468f168-a608-4e26-93b2-8cfcf5816b13}" DisplayName="Rule Group" Required="FALSE" Name="bspRuleGroup" />
+          <FieldRef ID="{ed0584ea-1da7-4af9-b7df-e002dd40ddf9}" DisplayName="Bonus Per Participant" Required="FALSE" Name="bspBonusPerParticipant" />
+        </FieldRefs>
+      </ContentType>
+      <ContentTypeRef ID="0x0120" />
+    </ContentTypes>
+    <Fields>
+
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="$Resources:core,Title;" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" />
+      <Field ID="{92fa0af2-ad10-44f3-8532-3ede6dd9490e}" Name="bspDueDate" DisplayName="Due Date" Type="DateTime" Format="DateOnly" Required="FALSE" Group="Project Site Columns"></Field>
+      <Field ID="{302c57ea-9093-492d-b6d6-43d64691ebfd}" Name="bspParticipants" DisplayName="Participants" Type="UserMulti" Required="FALSE" Mult="TRUE" DisplayNameSrcField="Account" UserSelectionMode="PeopleOnly" Group="Project Site Columns"></Field>
+      <Field ID="{7efd997c-fa52-474b-bafe-86dab7bf185e}" Name="bspEarnings" DisplayName="Earnings" Type="Currency" Required="FALSE" LCID="1033" Min="0" Group="Project Site Columns"></Field>
+      <Field ID="{54eba282-5070-49c1-be9b-e44ff5265e57}" Name="bspExpenses" DisplayName="Expenses" Type="Currency" Required="FALSE" LCID="1033" Min="0" Group="Project Site Columns"></Field>
+      <Field
+       ID="{eba2d59a-13b5-4395-b5b8-0cbcd031af45}"
+       Name="bspRuleEngine"
+       DisplayName="Rule Engine"
+       Type="Choice"
+       Required="FALSE"
+       Group="Project Site Columns">
+        <CHOICES>
+          <CHOICE>SRE (Simple Rule Engine)</CHOICE>
+          <CHOICE>NxBRE</CHOICE>
+          <CHOICE>JavaScript</CHOICE>
+        </CHOICES>
+        <MAPPINGS>
+          <MAPPING Value="1">SRE (Simple Rule Engine)</MAPPING>
+          <MAPPING Value="2">NxBRE</MAPPING>
+          <MAPPING Value="3">JavaScript</MAPPING>
+        </MAPPINGS>
+      </Field>
+      <Field 
+        ID="{e468f168-a608-4e26-93b2-8cfcf5816b13}" 
+        Name="bspRuleGroup" 
+        DisplayName="Rule Group" 
+        Type="Text" 
+        Required="FALSE"
+        Group="Project Site Columns">
+      </Field>
+      <Field 
+        ID="{ed0584ea-1da7-4af9-b7df-e002dd40ddf9}" 
+        Name="bspBonusPerParticipant" 
+        DisplayName="Bonus Per Participant" 
+        Type="Currency" 
+        Required="FALSE" 
+        LCID="1033" 
+        Min="0"
+        JSLink="~site/BSFiles/JS/jquery-1.8.2.min.js|~site/BSFiles/JS/bspBonusPerParticipant.js" 
+        Group="Project Site Columns">
+      </Field>
+    </Fields>
+    <Views>
+
+
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png?rev=23" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="bspDueDate" />
+          <FieldRef Name="bspParticipants" />
+          <FieldRef Name="bspEarnings" />
+          <FieldRef Name="bspExpenses" />
+          <FieldRef Name="bspRuleEngine" />
+          <FieldRef Name="bspRuleGroup" />
+          <FieldRef Name="bspBonusPerParticipant" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

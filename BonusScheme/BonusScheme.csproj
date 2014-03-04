@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{184F69B7-4BF1-4FCD-8163-C9024EF13A89}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonusScheme</RootNamespace>
+    <AssemblyName>BonusScheme</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+    <ActiveDeploymentConfiguration>Default</ActiveDeploymentConfiguration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Activities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SharePoint.DesignTime.Activities, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ContentTypes\BSProject\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2a65a96d-b4b2-4617-a3ba-7fe8b133f7a5}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\DataModel\DataModel.feature">
+      <FeatureId>{55bcd096-512b-4893-a7dc-361fdbbb4d16}</FeatureId>
+    </None>
+    <None Include="Features\Modules\Modules.feature">
+      <FeatureId>{233c3239-a9a3-4433-a547-e68d529b8646}</FeatureId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="Lists\BSFiles\BSFilesInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3ec028ed-002d-4a4b-8ddc-5bad9f9ae864}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BSFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ab2b5b0d-08ae-4d38-ae91-da114d40f889}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Projects\ProjectsInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2f754b81-c4a8-441e-ab90-ef8c52c57823}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Projects\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{698a820c-e68a-4802-9bda-1a2de2c22970}</SharePointProjectItemId>
+    </None>
+    <None Include="Modules\BSFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{124f552d-bb41-48d3-96ad-cd0515fec885}</SharePointProjectItemId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{21856b71-913b-492a-8722-a87506667154}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="SiteColumns\bspBonusPerParticipant\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{80418f6c-4299-4168-87b8-bb6c90384f96}</SharePointProjectItemId>
+    </None>
+    <None Include="SiteColumns\bspDueDate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{aa8a0d61-775b-4e41-9946-87a912e26b74}</SharePointProjectItemId>
+    </None>
+    <None Include="SiteColumns\bspExpenses\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{38a5d1cb-b900-445c-bdf2-d1772c86867e}</SharePointProjectItemId>
+    </None>
+    <None Include="SiteColumns\bspEarnings\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{68cd7a45-c773-4070-a518-bf34b7dffea1}</SharePointProjectItemId>
+    </None>
+    <None Include="SiteColumns\bspParticipants\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ca85c209-ce96-49d7-992a-69d8cf6a0f15}</SharePointProjectItemId>
+    </None>
+    <None Include="SiteColumns\bspRuleEngine\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2c396995-431e-4658-b310-23c8729f06eb}</SharePointProjectItemId>
+    </None>
+    <None Include="SiteColumns\bspRuleGroup\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f17ff6a1-d6aa-43ce-9722-8ce0152b11e5}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentTypes\BSProject\Elements.xml" />
+    <Content Include="Features\DataModel\DataModel.Template.xml">
+      <DependentUpon>DataModel.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\Modules\Modules.Template.xml">
+      <DependentUpon>Modules.feature</DependentUpon>
+    </Content>
+    <Content Include="Lists\BSFiles\BSFilesInstance\Elements.xml" />
+    <Content Include="Lists\BSFiles\EditDlg.htm" />
+    <Content Include="Lists\BSFiles\Elements.xml" />
+    <Content Include="Lists\BSFiles\FileDlg.htm" />
+    <Content Include="Lists\BSFiles\Repair.aspx" />
+    <Content Include="Lists\BSFiles\Schema.xml" />
+    <Content Include="Lists\BSFiles\Upload.aspx" />
+    <Content Include="Lists\Projects\Elements.xml" />
+    <Content Include="Lists\Projects\ProjectsInstance\Elements.xml" />
+    <Content Include="Lists\Projects\Schema.xml" />
+    <Content Include="Modules\BSFiles\Elements.xml" />
+    <Content Include="Modules\BSFiles\JS\bspBonusPerParticipant.js" />
+    <Content Include="Modules\BSFiles\JS\jquery-1.8.2.min.js" />
+    <Content Include="SiteColumns\bspBonusPerParticipant\Elements.xml" />
+    <Content Include="SiteColumns\bspDueDate\Elements.xml" />
+    <Content Include="SiteColumns\bspExpenses\Elements.xml" />
+    <Content Include="SiteColumns\bspEarnings\Elements.xml" />
+    <Content Include="SiteColumns\bspParticipants\Elements.xml" />
+    <Content Include="SiteColumns\bspRuleEngine\Elements.xml" />
+    <Content Include="SiteColumns\bspRuleGroup\Elements.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

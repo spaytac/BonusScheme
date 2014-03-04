@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- Parent ContentType: Item (0x01) -->
+  <ContentType ID="0x010058497E0560CD45F3883C0A76D31D13F7" Name="BSProject" Group="BS Content Types" Description="" Inherits="TRUE" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{92fa0af2-ad10-44f3-8532-3ede6dd9490e}" DisplayName="Due Date" Required="TRUE" Name="bspDueDate" Format="DateOnly" />
+      <FieldRef ID="{302c57ea-9093-492d-b6d6-43d64691ebfd}" DisplayName="Participants" Required="TRUE" Name="bspParticipants" />
+      <FieldRef ID="{7efd997c-fa52-474b-bafe-86dab7bf185e}" DisplayName="Earnings" Required="TRUE" Name="bspEarnings" />
+      <FieldRef ID="{54eba282-5070-49c1-be9b-e44ff5265e57}" DisplayName="Expenses" Required="FALSE" Name="bspExpenses" />
+      <FieldRef ID="{eba2d59a-13b5-4395-b5b8-0cbcd031af45}" DisplayName="Rule Engine" Required="TRUE" Name="bspRuleEngine" />
+      <FieldRef ID="{e468f168-a608-4e26-93b2-8cfcf5816b13}" DisplayName="Rule Group" Required="FALSE" Name="bspRuleGroup" />
+      <FieldRef ID="{ed0584ea-1da7-4af9-b7df-e002dd40ddf9}" DisplayName="Bonus Per Participant" Required="FALSE" Name="bspBonusPerParticipant" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

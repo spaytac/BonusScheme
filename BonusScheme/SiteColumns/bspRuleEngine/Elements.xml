@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">  
+  <Field
+       ID="{eba2d59a-13b5-4395-b5b8-0cbcd031af45}"
+       Name="bspRuleEngine"
+       DisplayName="Rule Engine"
+       Type="Choice"
+       Required="FALSE"
+       Group="Project Site Columns">
+    <CHOICES>
+      <CHOICE>SRE (Simple Rule Engine)</CHOICE>
+      <CHOICE>NxBRE</CHOICE>
+      <CHOICE>JavaScript</CHOICE>
+    </CHOICES>
+    <MAPPINGS>
+      <MAPPING Value="1">SRE (Simple Rule Engine)</MAPPING>
+      <MAPPING Value="2">NxBRE</MAPPING>
+      <MAPPING Value="3">JavaScript</MAPPING>
+    </MAPPINGS>
+    <Default>NxBRE</Default>
+  </Field>
+</Elements>

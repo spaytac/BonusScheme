@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">  
+  <Field
+       ID="{e468f168-a608-4e26-93b2-8cfcf5816b13}"
+       Name="bspRuleGroup"
+       DisplayName="Rule Group"
+       Type="Text"
+       Required="FALSE"
+       Group="Project Site Columns">
+  </Field>
+</Elements>

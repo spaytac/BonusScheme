@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">  
+  <Field
+       ID="{302c57ea-9093-492d-b6d6-43d64691ebfd}"
+       Name="bspParticipants"
+       DisplayName="Participants"
+       Type="UserMulti"
+       Required="FALSE"
+       Mult="TRUE" 
+       DisplayNameSrcField="Account" 
+       UserSelectionMode="PeopleOnly"
+       Group="Project Site Columns">
+  </Field>
+</Elements>

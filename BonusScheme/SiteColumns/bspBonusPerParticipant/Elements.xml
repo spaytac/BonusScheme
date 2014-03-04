@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">  
+  <Field
+       ID="{ed0584ea-1da7-4af9-b7df-e002dd40ddf9}"
+       Name="bspBonusPerParticipant"
+       DisplayName="Bonus Per Participant"
+       Type="Currency"
+       Required="FALSE" 
+       LCID="1033"
+       Min="0"
+       Group="Project Site Columns">
+  </Field>
+</Elements>

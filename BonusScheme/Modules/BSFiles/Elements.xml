@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="BSFiles">
+    <File Path="BSFiles\JS\jquery-1.8.2.min.js" Url="BSFiles/JS/jquery-1.8.2.min.js" />
+    <File Path="BSFiles\JS\bspBonusPerParticipant.js" Url="BSFiles/JS/bspBonusPerParticipant.js" />
+  </Module>
+</Elements>

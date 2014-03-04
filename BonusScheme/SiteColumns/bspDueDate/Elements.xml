@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">  
+  <Field
+       ID="{92fa0af2-ad10-44f3-8532-3ede6dd9490e}"
+       Name="bspDueDate"
+       DisplayName="Due Date"
+       Type="DateTime"
+       Format="DateOnly"
+       Required="FALSE"
+       Group="Project Site Columns">
+  </Field>
+</Elements>
