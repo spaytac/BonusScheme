@@ -1,0 +1,23 @@
+namespace NxBRE.Test.InferenceEngine
+{
+	using System;
+	using System.Collections;
+	
+	using NxBRE.InferenceEngine;
+	using NxBRE.InferenceEngine.IO;
+	using NxBRE.InferenceEngine.Rules;
+	
+	public class ChocolateBoxBinder:AbstractBinder {
+		public ChocolateBoxBinder():base(BindingTypes.BeforeAfter) {}
+		
+		public override object Compute(string operationName, IDictionary arguments) {
+			IEF.DispatchLog("ChocolateBox Binder Computing: " + operationName, 1);
+			
+			if (operationName == "CalculateTotalWeight")
+				return System.Convert.ToDouble(arguments[1])+System.Convert.ToDouble(arguments["Quantity"])*System.Convert.ToDouble(arguments["Weight"]);
+			else
+				return null;
+		}
+		
+	}
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+
+  NxBRE Inference engine Sample Rule Base
+
+  Author: David Dossot
+  
+  Note: In a real fraud control system, instead of counting the risk factors as demonstrated in this rulebase, scores would be assigned to different risks and these scores would be added to a business object property via the new fact event.
+
+-->
+<RuleML xmlns="http://www.ruleml.org/0.9/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ruleml.org/0.9/xsd ruleml-0_9-nafdatalog.xsd">
+	<oid>
+		<Ind>Fraud Control Knowledge Base</Ind>
+	</oid>
+	<Assert>
+	<!--
+		Implications
+	-->
+		<Implies>
+			<oid>
+				<Ind>Tax Haven Fraud Factor Assessment</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Location</Rel>
+					<Var>Customer</Var>
+					<Var>Country Code</Var>
+				</Atom>
+				<Atom>
+					<Rel>Tax Haven</Rel>
+					<Var>Country Code</Var>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Fraud Factor</Rel>
+				<Var>Customer</Var>
+				<Ind>Tax Haven</Ind>
+			</Atom>
+		</Implies>
+		<Implies>
+			<oid>
+				<Ind>Huge Transaction Assessment</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Involved In</Rel>
+					<Var>Customer</Var>
+					<Var>Transaction</Var>
+				</Atom>
+				<Atom>
+					<Rel>Amount</Rel>
+					<Var>Transaction</Var>
+					<Ind uri="nxbre://binder">min(150000,EUR)</Ind>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Fraud Factor</Rel>
+				<Var>Customer</Var>
+				<Ind>Huge Transaction</Ind>
+			</Atom>
+		</Implies>
+		<Implies>
+			<oid>
+				<Ind>Fraudulent Customer Assessment</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Fraud Factor</Rel>
+					<Var>Customer</Var>
+					<Var>Type1</Var>
+				</Atom>
+				<Atom>
+					<Rel>Fraud Factor</Rel>
+					<Var>Customer</Var>
+					<Var>Type2</Var>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Fraudulent Customer</Rel>
+				<Var>Customer</Var>
+			</Atom>
+		</Implies>
+	<!--
+		Facts
+	-->
+		<Atom>
+			<oid>
+				<Ind>CC01-TH</Ind>
+			</oid>
+			<Rel>Tax Haven</Rel>
+			<Ind>CC01</Ind>
+		</Atom>
+		<Atom>
+			<oid>
+				<Ind>CC02-TH</Ind>
+			</oid>
+			<Rel>Tax Haven</Rel>
+			<Ind>CC02</Ind>
+		</Atom>
+		<Atom>
+			<oid>
+				<Ind>CC99-TH</Ind>
+			</oid>
+			<Rel>Tax Haven</Rel>
+			<Ind>CC99</Ind>
+		</Atom>
+	</Assert>
+	<!--
+		Queries
+	-->
+	<Query>
+		<oid>
+			<Ind>Fraudulent Customers</Ind>
+		</oid>
+		<Atom>
+			<Rel>Fraudulent Customer</Rel>
+			<Var>Customer</Var>
+		</Atom>
+	</Query>
+</RuleML>

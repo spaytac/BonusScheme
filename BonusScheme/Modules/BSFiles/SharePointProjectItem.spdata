@@ -4,5 +4,7 @@
     <ProjectItemFile Source="Elements.xml" Target="BSFiles\" Type="ElementManifest" />
     <ProjectItemFile Source="JS\jquery-1.8.2.min.js" Target="BSFiles\JS\" Type="ElementFile" />
     <ProjectItemFile Source="JS\bspBonusPerParticipant.js" Target="BSFiles\JS\" Type="ElementFile" />
+    <ProjectItemFile Source="NxBRE\ProjectRuleSet.xbre" Target="BSFiles\NxBRE\" Type="ElementFile" />
+    <ProjectItemFile Source="NxBRE\xBusinessRules.xsd" Target="BSFiles\NxBRE\" Type="ElementFile" />
   </Files>
 </ProjectItem>

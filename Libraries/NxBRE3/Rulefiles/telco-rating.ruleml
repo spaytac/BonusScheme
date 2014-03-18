@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+
+  NxBRE Inference Engine Sample Rule Base
+
+  Author: David Dossot
+
+  Remark: This rule base uses mutual exclusion mechanism, forcing to isolate the facts of the different call data. A faster approach would be to write the rules differently, with no more usage of mutual exclusion, then expose all the call data in one operation.
+
+-->
+<RuleML xmlns="http://www.ruleml.org/0.9/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ruleml.org/0.9/xsd ruleml-0_9-nafdatalog.xsd">
+	<oid>
+		<Ind>Telecom Rating Rules</Ind>
+	</oid>
+	<!--
+		Global LOCal and INTernational Call Rating Assertions
+	-->
+	<Assert>
+		<Implies>
+			<oid>
+				<Ind>label:LOC;priority:10;action:assert</Ind>
+			</oid>
+			<Atom>
+				<Rel>Type</Rel>
+				<Var>Call</Var>
+				<Ind>LOC</Ind>
+			</Atom>
+			<Atom>
+				<Rel>Rating Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>PerSecond:0.001</Ind>
+			</Atom>
+		</Implies>
+		<Implies>
+			<oid>
+				<Ind>label:INT Zone A;priority:10;mutex:PRO INT</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Type</Rel>
+					<Var>Call</Var>
+					<Ind>INT</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Destination</Rel>
+					<Var>Call</Var>
+					<Var>Country</Var>
+				</Atom>
+				<Atom>
+					<Rel>Zone A</Rel>
+					<Var>Country</Var>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Rating Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>FirstMinuteFeeThenPerSecond:0.25;0.002</Ind>
+			</Atom>
+		</Implies>
+		<Implies>
+			<oid>
+				<Ind>label:Day INT Zone B;priority:10;mutex:PRO INT</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Type</Rel>
+					<Var>Call</Var>
+					<Ind>INT</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Destination</Rel>
+					<Var>Call</Var>
+					<Var>Country</Var>
+				</Atom>
+				<Atom>
+					<Rel>Zone B</Rel>
+					<Var>Country</Var>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Rating Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>FirstMinuteFeeThenPerSecond:0.50;0.003</Ind>
+			</Atom>
+		</Implies>
+	<!--
+		Nightly INT Call Exceptions
+	-->
+		<Implies>
+			<oid>
+				<Ind>label:Night INT Zone A;priority:20;mutex:INT Zone A</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Time Scheme</Rel>
+					<Var>Call</Var>
+					<Ind>Night</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Type</Rel>
+					<Var>Call</Var>
+					<Ind>INT</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Destination</Rel>
+					<Var>Call</Var>
+					<Var>Country</Var>
+				</Atom>
+				<Atom>
+					<Rel>Zone A</Rel>
+					<Var>Country</Var>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Rating Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>PerSecond:0.002</Ind>
+			</Atom>
+		</Implies>
+	<!--
+		Professional Customers INT Call Exceptions
+	-->
+		<Implies>
+			<oid>
+				<Ind>label:PRO INT;priority:30</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Type</Rel>
+					<Var>Call</Var>
+					<Ind>INT</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Client Scheme</Rel>
+					<Var>Call</Var>
+					<Ind>PRO</Ind>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Rating Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>FirstMinuteFeeThenPerSecond:0.15;0.0015</Ind>
+			</Atom>
+		</Implies>
+	<!--
+		Day Time / Night Time Assertions (Day is between 0700 and 2000)
+	-->
+		<Implies>
+			<oid>
+				<Ind>label:Day Time;priority:90</Ind>
+			</oid>
+			<And>
+				<Atom>
+					<Rel>Hour</Rel>
+					<Var>Call</Var>
+					<Ind uri="nxbre://operator">GreaterThanEqualTo(7)</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Hour</Rel>
+					<Var>Call</Var>
+					<Ind uri="nxbre://operator">LessThanEqualTo(20)</Ind>
+				</Atom>
+			</And>
+			<Atom>
+				<Rel>Time Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>Day</Ind>
+			</Atom>
+		</Implies>
+		<Implies>
+			<oid>
+				<Ind>label:Night Time;priority:90</Ind>
+			</oid>
+			<Or>
+				<Atom>
+					<Rel>Hour</Rel>
+					<Var>Call</Var>
+					<Ind uri="nxbre://operator">GreaterThanEqualTo(21)</Ind>
+				</Atom>
+				<Atom>
+					<Rel>Hour</Rel>
+					<Var>Call</Var>
+					<Ind uri="nxbre://operator">LessThanEqualTo(6)</Ind>
+				</Atom>
+			</Or>
+			<Atom>
+				<Rel>Time Scheme</Rel>
+				<Var>Call</Var>
+				<Ind>Night</Ind>
+			</Atom>
+		</Implies>
+	<!--
+		Country Destinations Zones Facts
+	-->
+		<Atom>
+			<Rel>Zone A</Rel>
+			<Ind>CC01</Ind>
+		</Atom>
+		<Atom>
+			<Rel>Zone A</Rel>
+			<Ind>CC02</Ind>
+		</Atom>
+		<Atom>
+			<Rel>Zone B</Rel>
+			<Ind>CC99</Ind>
+		</Atom>
+	</Assert>
+</RuleML>

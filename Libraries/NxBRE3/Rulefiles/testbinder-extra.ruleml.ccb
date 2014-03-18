@@ -1,0 +1,25 @@
+namespace NxBRE.Test.InferenceEngine
+{
+	using System;
+	using System.Collections;
+	
+	using NxBRE.InferenceEngine;
+	using NxBRE.InferenceEngine.IO;
+	using NxBRE.InferenceEngine.Rules;
+
+	using NxBRE.Util;
+	
+	public class ExtraTestBinder:AbstractBinder {
+		public ExtraTestBinder():base(BindingTypes.BeforeAfter) {}
+		
+		public override object Compute(string operationName, IDictionary arguments) {
+			if (operationName == "subtract") {
+				IList operandNames = (IList)arguments[typeof(Parameter)];
+				return Convert.ToInt32(arguments[operandNames[0]])-Convert.ToInt32(arguments[operandNames[1]]);
+				}
+			else {
+				throw new NotImplementedException("Operation '" + operationName + "' is not supported by this binder.");
+				}
+			}
+	}
+}

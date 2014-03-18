@@ -65,7 +65,24 @@
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\IRuleCommand.cs" />
+    <Compile Include="Commands\NotImplementedCommand.cs" />
+    <Compile Include="Commands\NxBRECommand.cs" />
+    <Compile Include="Helpers\GlobalExtensions.cs" />
+    <Compile Include="Helpers\NxBRE\Utils.cs" />
+    <Compile Include="Helpers\Project\ProjectFieldIds.cs" />
+    <Compile Include="Helpers\Project\ProjectFieldNames.cs" />
+    <Compile Include="Layouts\BonusScheme\ASPX\Executor.aspx.cs">
+      <DependentUpon>Executor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\BonusScheme\ASPX\Executor.aspx.designer.cs">
+      <DependentUpon>Executor.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Project.cs" />
+    <Compile Include="RuleEngine\ResultValue.cs" />
+    <Compile Include="RuleEngine\Types.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ContentTypes\BSProject\SharePointProjectItem.spdata">
@@ -78,6 +95,9 @@
       <FeatureId>{233c3239-a9a3-4433-a547-e68d529b8646}</FeatureId>
     </None>
     <None Include="key.snk" />
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8e9f2c14-1181-434c-81cd-42d43f8b29d9}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\BSFiles\BSFilesInstance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3ec028ed-002d-4a4b-8ddc-5bad9f9ae864}</SharePointProjectItemId>
     </None>
@@ -89,6 +109,10 @@
     </None>
     <None Include="Lists\Projects\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{698a820c-e68a-4802-9bda-1a2de2c22970}</SharePointProjectItemId>
+    </None>
+    <None Include="Modules\BSFiles\NxBRE\ProjectRuleSet.xbre" />
+    <None Include="Modules\BSFiles\NxBRE\xBusinessRules.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Modules\BSFiles\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{124f552d-bb41-48d3-96ad-cd0515fec885}</SharePointProjectItemId>
@@ -129,6 +153,7 @@
     <Content Include="Features\Modules\Modules.Template.xml">
       <DependentUpon>Modules.feature</DependentUpon>
     </Content>
+    <Content Include="Layouts\BonusScheme\ASPX\Executor.aspx" />
     <Content Include="Lists\BSFiles\BSFilesInstance\Elements.xml" />
     <Content Include="Lists\BSFiles\EditDlg.htm" />
     <Content Include="Lists\BSFiles\Elements.xml" />
@@ -149,6 +174,12 @@
     <Content Include="SiteColumns\bspParticipants\Elements.xml" />
     <Content Include="SiteColumns\bspRuleEngine\Elements.xml" />
     <Content Include="SiteColumns\bspRuleGroup\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\NxBRE3\NxBRE.csproj">
+      <Project>{c5a2507e-550e-4eec-b3c2-a278ecb27e30}</Project>
+      <Name>NxBRE</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

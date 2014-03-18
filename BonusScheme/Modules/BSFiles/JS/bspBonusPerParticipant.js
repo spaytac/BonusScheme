@@ -37,8 +37,7 @@
             ruleGroupField = $('#' + ruleGroupFieldId.replace(/\$/g, '\\\$'));
 
 
-        var bbpField = $('#' + bonusPerParticipantFieldId);
-        bbpField.val('calculating...');
+        setValue('calculating...');
 
         var peoplePicker = SPClientPeoplePicker.SPClientPeoplePickerDict[participantsDiv[0].id];
         var selectedParticipants = peoplePicker.GetAllUserInfo();
@@ -53,19 +52,59 @@
         var ruleEngine = ruleEngines[ruleEngineField.val()];
         var ruleGroup = ruleGroupField.val();
 
+        earnings = parseFloat(earnings.replace(thousandsSeperator, '')),
+        expenses = expenses ? parseFloat(expenses.replace(thousandsSeperator, '')) : 0;
+
         if (ruleEngine === 0) {
-            earnings = parseFloat(earnings.replace(thousandsSeperator, '')),
-            expenses = expenses ? parseFloat(expenses) : 0;
+            
             if (ruleGroup) {
 
             } else {
-                var bppValue = (earnings - expenses) / participants.length;
-                bonusPerParticipantValue = bppValue.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousandsSeperator);
-                bbpField.val(bonusPerParticipantValue);
+                setValue(getParsedValue((earnings - expenses) / participants.length));
             }
         }
         else {
-            bbpField.val('Not Implemented!');
+            var values = {
+                Title: titleField.val(),
+                DueDate: dueDateField.val(),
+                Participants: participants,
+                Earnings: earnings,
+                Expenses: expenses,
+                RuleEngine: ruleEngine,
+                RuleGroup: ruleGroup,
+                BonusPerParticipant: 0
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: L_Menu_BaseUrl + '/_layouts/15/BonusScheme/ASPX/Executor.aspx',
+                data: { project: JSON.stringify(values) }
+            }).done(function (returnedJSON) {
+                if (returnedJSON.Succeeded) {
+                    setValue(getParsedValue(returnedJSON.Value));
+                } else {
+                    setValue('Error');
+                    console.log(returnedJSON.Message);
+                }
+            }).fail(function (jqXHR, message) {
+                setValue('Error');
+                console.log(message);
+            });
+        }
+    };
+
+    var setValue = function (value) {
+        bonusPerParticipantValue = value;
+        var bbpField = $('#' + bonusPerParticipantFieldId);
+        bbpField.val(value);
+    };
+
+    var getParsedValue = function (value) {
+        var valueType = typeof (value);
+
+        switch (valueType) {
+            case 'number': { return value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousandsSeperator); }
+            default: { return parseFloat(value).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousandsSeperator); }
         }
     };
 

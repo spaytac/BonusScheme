@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xBusinessRules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xBusinessRules.xsd">
+  <ObjectLookup id="Earnings" objectId="Project" member="Earnings"/>
+  <ObjectLookup id="Expenses" objectId="Project" member="Expenses"/>
+  <ObjectLookup id="RuleGroup" objectId="Project" member="RuleGroup" />
+  <ObjectLookup id="Participants" objectId="Project" member="Participants" type="System.Collections.Generic.List`1[System.String]"/>
+
+  <ObjectLookup id="BonusPerParticipant" objectId="Project" member="BonusPerParticipant">
+    <Argument value="0" type="String"/>
+  </ObjectLookup>
+
+  <ObjectLookup id="ParticipantsCount" type="BonusScheme.Helpers.NxBRE.Utils, BonusScheme, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5d83f69e33a96256" member="GetParticipantsCount">
+    <Argument valueId="Participants"/>
+  </ObjectLookup>
+
+  <Logic>
+    <If>
+      <And>
+        <GreaterThan leftId="Earnings" rightId="Expenses"/>
+      </And>
+      <Do>
+
+        <ObjectLookup id="RESULT" type="NxBRE.Util.Maths" member="Subtract">
+          <Argument valueId="Earnings"/>
+          <Argument valueId="Expenses"/>
+        </ObjectLookup>
+
+        <ObjectLookup id="RESULTASSTRING" type="NxBRE.Util.Reflection" member="CastValue">
+          <Argument valueId="RESULT"/>
+          <Argument value="System.String"/>
+        </ObjectLookup>
+
+
+        <Logic>
+          <If>
+            <And>
+              <Equals leftId="RuleGroup" rightId="emptyString">
+                <Assert id="emptyString" type="System.String" value=""/>
+              </Equals>
+            </And>
+            <Do>
+              <ObjectLookup id="RESULT" type="NxBRE.Util.Maths" member="Divide">
+                <Argument valueId="RESULT"/>
+                <Argument valueId="ParticipantsCount"/>
+              </ObjectLookup>
+
+              <ObjectLookup id="RESULTASSTRING" type="NxBRE.Util.Reflection" member="CastValue">
+                <Argument valueId="RESULT"/>
+                <Argument value="System.String"/>
+              </ObjectLookup>
+              <ObjectLookup id="BonusPerParticipant" objectId="Project" member="BonusPerParticipant">
+                <Argument valueId="RESULTASSTRING" type="String"/>
+              </ObjectLookup>
+            </Do>
+          </If>
+          <ElseIf>
+            <And>
+              <Equals leftId="RuleGroup" rightId="testGroup">
+                <Assert id="testGroup" type="System.String" value="Test"/>
+              </Equals>
+            </And>
+            <Do>
+              <ObjectLookup id="RESULT" type="NxBRE.Util.Maths" member="Divide">
+                <Argument valueId="RESULT"/>
+                <Argument valueId="ParticipantsCount"/>
+              </ObjectLookup>
+
+              <ObjectLookup id="RESULT" type="NxBRE.Util.Maths" member="Multiply">
+                <Argument valueId="RESULT"/>
+                <Argument type="Double" value=".15"/>
+              </ObjectLookup>
+            </Do>
+          </ElseIf>
+        </Logic>
+
+        <Logic>
+          <If>
+            <And>
+              <GreaterThan leftId="Expenses" rightId="RESULT"/>
+            </And>
+            <Do>
+              <ObjectLookup id="RESULT" type="NxBRE.Util.Maths" member="Multiply">
+                <Argument valueId="RESULT"/>
+                <Argument type="Double" value=".25"/>
+              </ObjectLookup>
+            </Do>
+          </If>
+        </Logic>
+
+        <ObjectLookup id="RESULTASSTRING" type="NxBRE.Util.Reflection" member="CastValue">
+          <Argument valueId="RESULT"/>
+          <Argument value="System.String"/>
+        </ObjectLookup>
+        <ObjectLookup id="BonusPerParticipant" objectId="Project" member="BonusPerParticipant">
+          <Argument valueId="RESULTASSTRING" type="String"/>
+        </ObjectLookup>
+      </Do>
+    </If>
+  </Logic>
+</xBusinessRules>
