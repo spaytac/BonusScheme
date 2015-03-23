@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="RuleEngine.ROM" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <FileName>ROM.cs</FileName>
+      <HashCode>QAAgAAAAAIQAAASKAIAAAgEAQEAIAQAABAEAIEAIAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RuleEngine.Evidence.Fact" BaseTypeListCollapsed="true">
+    <Position X="12" Y="7.75" Width="4.5" />
+    <TypeIdentifier>
+      <FileName>Evidence\Fact.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAEAAAAAgAAAAAEAAAAAAAASAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RuleEngine.Evidence.Rule" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="7.75" Width="4.5" />
+    <TypeIdentifier>
+      <FileName>Evidence\Rule.cs</FileName>
+      <HashCode>AAAgAAAQAAAAACAGBAAQAgAAAAAEIAIAAAAASAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RuleEngine.Evidence.AEvidence">
+    <Position X="10" Y="0.5" Width="4.5" />
+    <TypeIdentifier>
+      <FileName>Evidence\AEvidence.cs</FileName>
+      <HashCode>AJAkEACQAAIEgCQGBAAAAgQAAAAEACAAAAAgSAAAEhA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RuleEngine.Evidence.ExpressionEvaluator">
+    <Position X="15.25" Y="1.25" Width="3.75" />
+    <TypeIdentifier>
+      <FileName>Evidence\ExpressionEvaluator.cs</FileName>
+      <HashCode>wAAkAgAAAAAhhSRIBkCAAgxAEAECAQAAFAAAGBAAIEA=</HashCode>
+    </TypeIdentifier>
+    <NestedTypes>
+      <Enum Name="RuleEngine.Evidence.ExpressionEvaluator.Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Evidence\ExpressionEvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="RuleEngine.Evidence.ExpressionEvaluator.Symbol" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Evidence\ExpressionEvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+  </Class>
+  <Interface Name="RuleEngine.Evidence.IFact">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Evidence\IFact.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RuleEngine.Evidence.IRule">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Evidence\IRule.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RuleEngine.Evidence.IEvidence">
+    <Position X="1.75" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <FileName>Evidence\IEvidence.cs</FileName>
+      <HashCode>AAAAAACQAAAAgCACBAAAAgAAAAAAAAAAAAAgAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="RuleEngine.ChangedHandler" Collapsed="true">
+    <Position X="17.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Delegates.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RuleEngine.EvidenceLookupHandler" Collapsed="true">
+    <Position X="15.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>Delegates.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RuleEngine.ActionCallbackDelegateHandler" Collapsed="true">
+    <Position X="15.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Delegates.cs</FileName>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RuleEngine.ModelLookupHandler" Collapsed="true">
+    <Position X="17.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Delegates.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

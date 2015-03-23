@@ -8,8 +8,6 @@
     win.BS.Fields.BPP = {};
     var field = win.BS.Fields.BPP;
 
-    var context, thousandsSeperator, decimalSeperator;
-
     var titleFieldId = 'Title_fa564e0f-0c70-4ab9-b863-0177e6ddd247_$TextField',
         dueDateFieldId = 'bspDueDate_92fa0af2-ad10-44f3-8532-3ede6dd9490e_$DateTimeFieldDate',
         participantsDivId = 'bspParticipants_302c57ea-9093-492d-b6d6-43d64691ebfd_$ClientPeoplePicker',
@@ -22,7 +20,6 @@
     var bonusPerParticipantValue;
 
     var ruleEngines = {
-        "JavaScript": 0,
         "NxBRE": 1,
         "SRE (Simple Rule Engine)": 2
     };
@@ -37,39 +34,29 @@
             ruleGroupField = $('#' + ruleGroupFieldId.replace(/\$/g, '\\\$'));
 
 
-        setValue('calculating...');
+        SP.SOD.executeFunc("sp.js", "SP.ClientContext", function () {
+            var bbpField = $('#' + bonusPerParticipantFieldId);
+            bbpField.val('calculating...');
 
-        var peoplePicker = SPClientPeoplePicker.SPClientPeoplePickerDict[participantsDiv[0].id];
-        var selectedParticipants = peoplePicker.GetAllUserInfo();
-        var participants = [];
+            var peoplePicker = SPClientPeoplePicker.SPClientPeoplePickerDict[participantsDiv[0].id];
+            var selectedParticipants = peoplePicker.GetAllUserInfo();
+            var participants = [];
 
-        Array.forEach(selectedParticipants, function (participant) {
-            participants.push(participant.DisplayText);
-        });
+            Array.forEach(selectedParticipants, function (participant) {
+                participants.push(participant.DisplayText);
+            });
 
-        var earnings = earningsField.val();
-        var expenses = expensesField.val();
-        var ruleEngine = ruleEngines[ruleEngineField.val()];
-        var ruleGroup = ruleGroupField.val();
+            var earnings = earningsField.val();
+            var expenses = expensesField.val();
+            var ruleEngine = ruleEngines[ruleEngineField.val()];
+            var ruleGroup = ruleGroupField.val();
 
-        earnings = parseFloat(earnings.replace(thousandsSeperator, '')),
-        expenses = expenses ? parseFloat(expenses.replace(thousandsSeperator, '')) : 0;
-
-        if (ruleEngine === 0) {
-            
-            if (ruleGroup) {
-
-            } else {
-                setValue(getParsedValue((earnings - expenses) / participants.length));
-            }
-        }
-        else {
             var values = {
                 Title: titleField.val(),
                 DueDate: dueDateField.val(),
                 Participants: participants,
-                Earnings: earnings,
-                Expenses: expenses,
+                Earnings: earnings.length > 0 ? parseFloat(earnings.replace(/,/g, '')) : 0,
+                Expenses: expenses.length > 0 ? parseFloat(expenses.replace(/,/g, '')) : 0,
                 RuleEngine: ruleEngine,
                 RuleGroup: ruleGroup,
                 BonusPerParticipant: 0
@@ -81,31 +68,17 @@
                 data: { project: JSON.stringify(values) }
             }).done(function (returnedJSON) {
                 if (returnedJSON.Succeeded) {
-                    setValue(getParsedValue(returnedJSON.Value));
+                    bonusPerParticipantValue = returnedJSON.Value;
+                    bbpField.val(bonusPerParticipantValue);
                 } else {
-                    setValue('Error');
+                    bbpField.val('Error');
                     console.log(returnedJSON.Message);
                 }
             }).fail(function (jqXHR, message) {
-                setValue('Error');
+                bbpField.val('Error');
                 console.log(message);
             });
-        }
-    };
-
-    var setValue = function (value) {
-        bonusPerParticipantValue = value;
-        var bbpField = $('#' + bonusPerParticipantFieldId);
-        bbpField.val(value);
-    };
-
-    var getParsedValue = function (value) {
-        var valueType = typeof (value);
-
-        switch (valueType) {
-            case 'number': { return value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousandsSeperator); }
-            default: { return parseFloat(value).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousandsSeperator); }
-        }
+        });
     };
 
     field.View = function (ctx) {
@@ -144,28 +117,6 @@
     var rederedSuccesFully = false;
     var onPostRender = function (ctx) {
         if (!rederedSuccesFully) {
-
-            SP.SOD.executeFunc("sp.js", "SP.ClientContext", function () {
-
-                if (!context) {
-                    context = SP.ClientContext.get_current();
-                }
-
-                var web = context.get_web();
-                context.load(web);
-
-                var rs = web.get_regionalSettings();
-                context.load(rs);
-
-                context.executeQueryAsync(function () {
-                    thousandsSeperator = rs.get_thousandSeparator();
-                    decimalSeperator = rs.get_decimalSeparator();
-                }, function () {
-                    alert("Error occurred!");
-                });
-            });
-
-
             rederedSuccesFully = true;
         }
     };

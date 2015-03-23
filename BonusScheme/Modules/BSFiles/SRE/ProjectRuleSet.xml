@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RuleEngine>
+
+  <Rules>
+    <Rule id="Rule1" desc="Rule" chainable="True" priority="100">
+      <Condition><![CDATA[ ISNULL(RuleGroup) OR (RuleGroup == "") ]]></Condition>
+      <Actions>
+        <Evaluate factId="Result"><![CDATA[ Earnings - Expenses ]]></Evaluate>
+        <Execute factId="Rule2" />
+      </Actions>
+    </Rule>
+
+    <Rule id="Rule2" desc="Rule" priority="20">
+      <Condition><![CDATA[ Result > 0 ]]></Condition>
+      <Actions Result="True">
+        <Evaluate factId="Result"><![CDATA[ Result / ParticipantsCount ]]></Evaluate>
+        <Execute factId="Rule3" />
+      </Actions>
+    </Rule>
+
+    <Rule id="Rule3" desc="Rule" priority="10">
+      <Condition><![CDATA[ Expenses > Result ]]></Condition>
+      <Actions Result="True">
+        <Evaluate factId="Result"><![CDATA[ Result * Var1 ]]></Evaluate>
+      </Actions>
+    </Rule>
+
+    <Rule id="Rule4" desc="Rule" chainable="True" priority="200">
+      <Condition><![CDATA[ (RuleGroup == "Test") ]]></Condition>
+      <Actions>
+        <Evaluate factId="Result"><![CDATA[ Earnings - Expenses ]]></Evaluate>
+        <Execute factId="Rule5" />
+      </Actions>
+    </Rule>
+
+    <Rule id="Rule5" desc="Rule" priority="20">
+      <Condition><![CDATA[ Result > 0 ]]></Condition>
+      <Actions Result="True">
+        <Evaluate factId="Result"><![CDATA[ (Result / ParticipantsCount) * TestVar1 ]]></Evaluate>
+        <Execute factId="Rule3" />
+      </Actions>
+    </Rule>
+
+  </Rules>
+
+  <Facts>
+    <Fact id="Earnings" desc="" type="double" modelId="Project">
+      <xpath><![CDATA[Project/Earnings]]></xpath>
+    </Fact>
+    <Fact id="Expenses" desc="" type="double" modelId="Project">
+      <xpath><![CDATA[Project/Expenses]]></xpath>
+    </Fact>
+    <Fact id="Title" desc="" type="string" modelId="Project">
+      <xpath><![CDATA[Project/Title]]></xpath>
+    </Fact>
+    <Fact id="ID" desc="" type="int" modelId="Project">
+      <xpath><![CDATA[Project/ID]]></xpath>
+    </Fact>
+    <Fact id="DueDate" desc="" type="DateTime" modelId="Project">
+      <xpath><![CDATA[Project/DueDate]]></xpath>
+    </Fact>
+    <Fact id="Participants" desc="" type="string[]" modelId="Project">
+      <xpath><![CDATA[Project/Participants]]></xpath>
+    </Fact>
+    <Fact id="ParticipantsCount" desc="" type="int" modelId="Project">
+      <xpath><![CDATA[count(Project/Participants//string)]]></xpath>
+    </Fact>
+    <Fact id="RuleGroup" desc="" type="string" modelId="Project">
+      <xpath><![CDATA[Project/RuleGroup]]></xpath>
+    </Fact>
+    <Fact id="Result" desc="" type="double" modelId="ResultProject">
+      <xpath><![CDATA[Project/BonusPerParticipant]]></xpath>
+    </Fact>
+    <Fact id="Var1" desc="" type="double" modelId="ResultProject">
+      <xpath><![CDATA[0.25]]></xpath>
+    </Fact>
+    <Fact id="TestVar1" desc="" type="double" modelId="ResultProject">
+      <xpath><![CDATA[0.15]]></xpath>
+    </Fact>
+  </Facts>
+
+</RuleEngine>

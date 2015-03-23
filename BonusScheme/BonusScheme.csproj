@@ -68,10 +68,11 @@
     <Compile Include="Commands\IRuleCommand.cs" />
     <Compile Include="Commands\NotImplementedCommand.cs" />
     <Compile Include="Commands\NxBRECommand.cs" />
+    <Compile Include="Commands\SRECommand.cs" />
     <Compile Include="Helpers\GlobalExtensions.cs" />
     <Compile Include="Helpers\NxBRE\Utils.cs" />
-    <Compile Include="Helpers\Project\ProjectFieldIds.cs" />
     <Compile Include="Helpers\Project\ProjectFieldNames.cs" />
+    <Compile Include="Helpers\Project\ProjectFieldIds.cs" />
     <Compile Include="Layouts\BonusScheme\ASPX\Executor.aspx.cs">
       <DependentUpon>Executor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,7 +97,7 @@
     </None>
     <None Include="key.snk" />
     <None Include="Layouts\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{8e9f2c14-1181-434c-81cd-42d43f8b29d9}</SharePointProjectItemId>
+      <SharePointProjectItemId>{c6e8e5f4-a2f2-4eb8-a87e-a8262a4a8d2d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\BSFiles\BSFilesInstance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3ec028ed-002d-4a4b-8ddc-5bad9f9ae864}</SharePointProjectItemId>
@@ -110,7 +111,6 @@
     <None Include="Lists\Projects\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{698a820c-e68a-4802-9bda-1a2de2c22970}</SharePointProjectItemId>
     </None>
-    <None Include="Modules\BSFiles\NxBRE\ProjectRuleSet.xbre" />
     <None Include="Modules\BSFiles\NxBRE\xBusinessRules.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -138,11 +138,17 @@
     <None Include="SiteColumns\bspParticipants\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ca85c209-ce96-49d7-992a-69d8cf6a0f15}</SharePointProjectItemId>
     </None>
+    <None Include="SiteColumns\bspProfit\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8013b1aa-bfe0-481f-8ebc-3deec339a67c}</SharePointProjectItemId>
+    </None>
     <None Include="SiteColumns\bspRuleEngine\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2c396995-431e-4658-b310-23c8729f06eb}</SharePointProjectItemId>
     </None>
     <None Include="SiteColumns\bspRuleGroup\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f17ff6a1-d6aa-43ce-9722-8ce0152b11e5}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\WorkflowHistoryList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d9d80840-b3f7-4ba5-a93d-19dcda8f9cb6}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -167,11 +173,15 @@
     <Content Include="Modules\BSFiles\Elements.xml" />
     <Content Include="Modules\BSFiles\JS\bspBonusPerParticipant.js" />
     <Content Include="Modules\BSFiles\JS\jquery-1.8.2.min.js" />
+    <Content Include="Lists\WorkflowHistoryList\Elements.xml" />
+    <None Include="Modules\BSFiles\NxBRE\ProjectRuleSet.xbre" />
+    <Content Include="Modules\BSFiles\SRE\ProjectRuleSet.xml" />
     <Content Include="SiteColumns\bspBonusPerParticipant\Elements.xml" />
     <Content Include="SiteColumns\bspDueDate\Elements.xml" />
     <Content Include="SiteColumns\bspExpenses\Elements.xml" />
     <Content Include="SiteColumns\bspEarnings\Elements.xml" />
     <Content Include="SiteColumns\bspParticipants\Elements.xml" />
+    <Content Include="SiteColumns\bspProfit\Elements.xml" />
     <Content Include="SiteColumns\bspRuleEngine\Elements.xml" />
     <Content Include="SiteColumns\bspRuleGroup\Elements.xml" />
   </ItemGroup>
@@ -179,6 +189,10 @@
     <ProjectReference Include="..\Libraries\NxBRE3\NxBRE.csproj">
       <Project>{c5a2507e-550e-4eec-b3c2-a278ecb27e30}</Project>
       <Name>NxBRE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\RuleEngine\RuleEngine.csproj">
+      <Project>{8dba31d2-e27e-439b-a37c-33d75b8df2c6}</Project>
+      <Name>RuleEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,7 +26,7 @@ namespace BonusScheme.Layouts.BonusScheme.ASPX
                 {
                     case Types.SRE:
                         {
-                            command = new NotImplementedCommand();
+                            command = new SRECommand(project, SPContext.Current.Web);
                             break;
                         }
                     case Types.NxBre:

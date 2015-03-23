@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="21856b71-913b-492a-8722-a87506667154" solutionId="21856b71-913b-492a-8722-a87506667154" resetWebServer="true" sharePointProductVersion="15.0" name="BonusScheme" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
+    <projectOutputAssembly location="ExpressionEvaluator.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Libraries\ExpressionEvaluator\ExpressionEvaluator.csproj">
+      <safeControls>
+        <safeControl assemblyName="ExpressionEvaluator" namespaceName="ExpressionEvaluator" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </projectOutputAssembly>
+    <projectOutputAssembly location="RuleEngine.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Libraries\RuleEngine\RuleEngine.csproj" />
     <projectOutputAssembly location="NxBRE.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Libraries\NxBRE3\NxBRE.csproj" />
   </assemblies>
   <features>
@@ -8,6 +14,6 @@
     <featureReference itemId="233c3239-a9a3-4433-a547-e68d529b8646" />
   </features>
   <projectItems>
-    <projectItemReference itemId="8e9f2c14-1181-434c-81cd-42d43f8b29d9" />
+    <projectItemReference itemId="c6e8e5f4-a2f2-4eb8-a87e-a8262a4a8d2d" />
   </projectItems>
 </package>

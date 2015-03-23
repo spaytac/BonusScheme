@@ -33,33 +33,15 @@
         <CHOICES>
           <CHOICE>SRE (Simple Rule Engine)</CHOICE>
           <CHOICE>NxBRE</CHOICE>
-          <CHOICE>JavaScript</CHOICE>
         </CHOICES>
         <MAPPINGS>
           <MAPPING Value="1">SRE (Simple Rule Engine)</MAPPING>
           <MAPPING Value="2">NxBRE</MAPPING>
-          <MAPPING Value="3">JavaScript</MAPPING>
         </MAPPINGS>
+        <Default>NxBRE</Default>
       </Field>
-      <Field 
-        ID="{e468f168-a608-4e26-93b2-8cfcf5816b13}" 
-        Name="bspRuleGroup" 
-        DisplayName="Rule Group" 
-        Type="Text" 
-        Required="FALSE"
-        Group="Project Site Columns">
-      </Field>
-      <Field 
-        ID="{ed0584ea-1da7-4af9-b7df-e002dd40ddf9}" 
-        Name="bspBonusPerParticipant" 
-        DisplayName="Bonus Per Participant" 
-        Type="Currency" 
-        Required="FALSE" 
-        LCID="1033" 
-        Min="0"
-        JSLink="~site/BSFiles/JS/jquery-1.8.2.min.js|~site/BSFiles/JS/bspBonusPerParticipant.js" 
-        Group="Project Site Columns">
-      </Field>
+      <Field ID="{e468f168-a608-4e26-93b2-8cfcf5816b13}" Name="bspRuleGroup" DisplayName="Rule Group" Type="Text" Required="FALSE" Group="Project Site Columns"></Field>
+      <Field ID="{ed0584ea-1da7-4af9-b7df-e002dd40ddf9}" Name="bspBonusPerParticipant" DisplayName="Bonus Per Participant" Type="Currency" Required="FALSE" LCID="1033" Min="0" JSLink="~site/BSFiles/JS/jquery-1.8.2.min.js|~site/BSFiles/JS/bspBonusPerParticipant.js" Group="Project Site Columns"></Field>
     </Fields>
     <Views>
 

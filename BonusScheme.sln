@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NxBRE", "Libraries\NxBRE3\NxBRE.csproj", "{C5A2507E-550E-4EEC-B3C2-A278ECB27E30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleEngine", "Libraries\RuleEngine\RuleEngine.csproj", "{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +31,18 @@ Global
 		{C5A2507E-550E-4EEC-B3C2-A278ECB27E30}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5A2507E-550E-4EEC-B3C2-A278ECB27E30}.TYPE_SAFE|Any CPU.ActiveCfg = Release|Any CPU
 		{C5A2507E-550E-4EEC-B3C2-A278ECB27E30}.TYPE_SAFE|Any CPU.Build.0 = Release|Any CPU
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}.TYPE_SAFE|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6}.TYPE_SAFE|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C5A2507E-550E-4EEC-B3C2-A278ECB27E30} = {0F6D587E-7CA4-4B69-BA85-D32BFADC7375}
+		{8DBA31D2-E27E-439B-A37C-33D75B8DF2C6} = {0F6D587E-7CA4-4B69-BA85-D32BFADC7375}
 	EndGlobalSection
 EndGlobal

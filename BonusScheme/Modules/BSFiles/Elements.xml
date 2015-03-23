@@ -3,7 +3,8 @@
   <Module Name="BSFiles">
     <File Path="BSFiles\JS\jquery-1.8.2.min.js" Url="BSFiles/JS/jquery-1.8.2.min.js" />
     <File Path="BSFiles\JS\bspBonusPerParticipant.js" Url="BSFiles/JS/bspBonusPerParticipant.js" />
+    <File Path="BSFiles\SRE\ProjectRuleSet.xml" Url="BSFiles/SRE/ProjectRuleSet.xml" />
     <File Path="BSFiles\NxBRE\ProjectRuleSet.xbre" Url="BSFiles/NxBRE/ProjectRuleSet.xbre" />
-    <File Path="BSFiles\NxBRE\xBusinessRules.xsd" Url="BSFiles/NxBRE/xBusinessRules.xsd" />
+    <File Path="BSFiles\SRE\ProjectRuleSet.xml" Url="BSFiles/SRE/ProjectRuleSet.xml"/>
   </Module>
 </Elements>
